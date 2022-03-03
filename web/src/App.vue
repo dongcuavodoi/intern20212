@@ -1,18 +1,20 @@
 <template>
   <div>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Hello World"></HelloWorld>
   </div>
 </template>
 
 <script>
-// import ButtonCounter from './components/ButtonCounter.vue'
-import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+  },
+  data() {
+    return {
+      awesome: true,
+    };
+  },
+  methods: {
   },
 };
 </script>
