@@ -1,0 +1,58 @@
+// Widget Type 1
+.widget-1 {
+	border-radius: 12px;
+	box-shadow: $shadow-1;
+
+	.ant-card-body {
+		padding: 16px;
+		position: relative;
+	}
+	.ant-statistic {
+		margin-right: 50px;
+	}
+	.ant-statistic-title {
+		font-family: $f-family;
+		font-weight: $fw-semibold;
+		color: $color-gray-7;
+		font-size: 14px;
+	}
+	.ant-statistic-content {
+		font-family: $f-family;
+		font-weight: $fw-bold;
+		color: inherit;
+		font-size: 30px;
+		line-height: 30px;
+	}
+	.ant-statistic-content-prefix,
+	.ant-statistic-content-value {
+		color: $color-gray-12;
+	}
+	.ant-statistic-content-prefix {
+		margin-right: 0;
+	}
+	.ant-statistic-content-suffix {
+		font-family: $f-family;
+		font-weight: $fw-bold;
+		font-size: 14px;
+		margin-left: 10px;
+	}
+	.icon {
+		width: 48px;
+		height: 48px;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 16px;
+		margin: auto;
+		background-color: $color-primary;
+		border-radius: 8px;
+		box-shadow: $shadow-2;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.icon svg path {
+		fill: $color-white;
+	}
+}
+// / Widget Type 1
