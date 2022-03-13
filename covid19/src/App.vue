@@ -39,7 +39,7 @@
         <a-breadcrumb-item>Home</a-breadcrumb-item>
         <a-breadcrumb-item>App</a-breadcrumb-item>
       </a-breadcrumb>
-      <div :style="{ padding: '24px', minHeight: '768px' }">
+      <div :style="{ padding: '24px', minHeight: '660px' }">
         <!-- Counter Widgets -->
         <a-row :gutter="24">
           <a-col
@@ -63,6 +63,24 @@
           </a-col>
         </a-row>
         <!-- / Counter Widgets -->
+        <!-- Charts -->
+		<a-row :gutter="24" type="flex" align="stretch" :style="{ padding: '24px'}">
+			<a-col :span="24" :lg="10" class="mb-24">
+
+				<!-- Active Users Card -->
+				<CardBarChart></CardBarChart>
+				<!-- Active Users Card -->
+
+			</a-col>
+			<a-col :span="24" :lg="14" class="mb-24">
+				
+				<!-- Sales Overview Card -->
+				<CardLineChart></CardLineChart>
+				<!-- / Sales Overview Card -->
+
+			</a-col>
+		</a-row>
+		<!-- / Charts -->
       </div>
     </a-layout-content>
     <a-layout-footer :style="{ textAlign: 'center' }">
@@ -73,7 +91,8 @@
 
 <script>
 import WidgetCounter from "../src/components/Widgets/WidgetCounter.vue";
-
+import CardLineChart from "../src/components/CardLineChart.vue";
+import CardBarChart from "../src/components/CardBarChart.vue";
 const stats = [
   {
     title: "Today’s Sales",
@@ -125,6 +144,8 @@ const stats = [
 export default {
   components: {
     WidgetCounter,
+    CardLineChart,
+    CardBarChart
   },
   data() {
     return {
