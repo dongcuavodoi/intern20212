@@ -1,0 +1,10 @@
+"Web tình hình covid 19 sử dụng api mẫu trên rapidapi:
+- Tình hình chung trên toàn thế giới và Việt Nam
+- Tìm kiếm theo tên quốc gia
+- Tình hình chi tiết 1 quốc gia (bảng dữ liệu và biểu đồ, export báo cáo ra pdf và excel)"
+
+
+Todo:
+- Homepage hiển thị tình hình chung trên toàn thế giới và Việt Nam
+- Tìm kiếm cho ra kết quả tình hình của 1 quốc gia
+- Tình hình chi tiết 1 quốc gia

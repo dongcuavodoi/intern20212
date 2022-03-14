@@ -156,7 +156,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 #components-layout-demo-fixed .logo {
   color: white;
   width: 120px;

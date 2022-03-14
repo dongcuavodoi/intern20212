@@ -17,7 +17,6 @@ export default {
   },
   mounted() {
     let ctx = this.$refs.chart.getContext("2d");
-
     this.chart = new Chart(ctx, {
       type: "line",
       data: this.data,

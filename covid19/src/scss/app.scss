@@ -1,3 +1,9 @@
-@import "./base/variables";
+@import "./base/_variables";
+@import "./base/_override";
+@import "./base/_typography";
+@import "./base/_utilities";
 
-@import "./components/widget";
+@import "./components/_chart";
+@import "./components/_card";
+@import "./components/_badge";
+@import "./components/_widget";
