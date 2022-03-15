@@ -64,23 +64,36 @@
         </a-row>
         <!-- / Counter Widgets -->
         <!-- Charts -->
-		<a-row :gutter="24" type="flex" align="stretch" :style="{ padding: '24px'}">
-			<a-col :span="24" :lg="10" class="mb-24">
-
-				<!-- Active Users Card -->
-				<CardBarChart></CardBarChart>
-				<!-- Active Users Card -->
-
-			</a-col>
-			<a-col :span="24" :lg="14" class="mb-24">
-				
-				<!-- Sales Overview Card -->
-				<CardLineChart></CardLineChart>
-				<!-- / Sales Overview Card -->
-
-			</a-col>
-		</a-row>
-		<!-- / Charts -->
+        <a-row
+          :gutter="24"
+          type="flex"
+          align="stretch"
+          :style="{ padding: '24px' }"
+        >
+          <a-col :span="24" :lg="10" class="mb-24">
+            <!-- Active Users Card -->
+            <CardBarChart></CardBarChart>
+            <!-- Active Users Card -->
+          </a-col>
+          <a-col :span="24" :lg="14" class="mb-24">
+            <!-- Sales Overview Card -->
+            <CardLineChart></CardLineChart>
+            <!-- / Sales Overview Card -->
+          </a-col>
+        </a-row>
+        <a-row :gutter="24" type="flex" align="stretch">
+          <!-- Table -->
+          <a-col :span="24" :lg="24" class="mb-24">
+            <!-- Projects Table Card -->
+            <CardProjectTable
+              :data="tableData"
+              :columns="tableColumns"
+            ></CardProjectTable>
+            <!-- / Projects Table Card -->
+          </a-col>
+          <!-- / Table -->
+        </a-row>
+        <!-- / Charts -->
       </div>
     </a-layout-content>
     <a-layout-footer :style="{ textAlign: 'center' }">
@@ -93,6 +106,7 @@
 import WidgetCounter from "../src/components/Widgets/WidgetCounter.vue";
 import CardLineChart from "../src/components/CardLineChart.vue";
 import CardBarChart from "../src/components/CardBarChart.vue";
+import CardProjectTable from "../src/components/CardProjectTable.vue";
 const stats = [
   {
     title: "Today’s Sales",
@@ -140,16 +154,122 @@ const stats = [
 						</svg>`,
   },
 ];
+// "Projects" table list of columns and their properties.
+	const tableColumns = [
+		{
+			title: 'COMPANIES',
+			dataIndex: 'company',
+			scopedSlots: { customRender: 'company' },
+			width: 300,
+      class: 'font-bold text-muted text-sm',
+		},
+		{
+			title: 'MEMBERS',
+			dataIndex: 'members',
+			scopedSlots: { customRender: 'members' },
+      class: 'font-bold text-muted text-sm',
+		},
+		{
+			title: 'BUDGET',
+			dataIndex: 'budget',
+			class: 'font-bold text-muted text-sm',
+		},
+		{
+			title: 'COMPLETION',
+			scopedSlots: { customRender: 'completion' },
+			dataIndex: 'completion',
+      class: 'font-bold text-muted text-sm',
+		},
+	];
 
+	// "Projects" table list of rows and their properties.
+	const tableData = [
+		{
+			key: '1',
+			company: {
+				name: 'Soft UI Shopify Version',
+				logo: 'images/logos/logo-shopify.svg',
+			},
+			members: [ "images/face-1.jpg", "images/face-4.jpg", "images/face-2.jpg", "images/face-3.jpg", ],
+			budget: '$14,000',
+			completion: 60,
+		},
+		{
+			key: '2',
+			company: {
+				name: 'Progress Track',
+				logo: 'images/logos/logo-atlassian.svg',
+			},
+			members: [ "images/face-4.jpg", "images/face-3.jpg", ],
+			budget: '$3,000',
+			completion: 10,
+		},
+		{
+			key: '3',
+			company: {
+				name: 'Fix Platform Errors',
+				logo: 'images/logos/logo-slack.svg',
+			},
+			members: [ "images/face-1.jpg", "images/face-2.jpg", "images/face-3.jpg", ],
+			budget: 'Not Set',
+			completion: {
+				label: '100',
+				status: 'success',
+				value: 100,
+			},
+		},
+		{
+			key: '4',
+			company: {
+				name: 'Launch new Mobile App',
+				logo: 'images/logos/logo-spotify.svg',
+			},
+			members: [ "images/face-1.jpg", "images/face-2.jpg", ],
+			budget: '$20,600',
+			completion: {
+				label: '100',
+				status: 'success',
+				value: 100,
+			},
+		},
+		{
+			key: '5',
+			company: {
+				name: 'Add the New Landing Page',
+				logo: 'images/logos/logo-jira.svg',
+			},
+			members: [ "images/face-1.jpg", "images/face-4.jpg", "images/face-2.jpg", "images/face-3.jpg", ],
+			budget: '$4,000',
+			completion: 80,
+		},
+		{
+			key: '6',
+			company: {
+				name: 'Redesign Online Store',
+				logo: 'images/logos/logo-invision.svg',
+			},
+			members: [ "images/face-1.jpg", "images/face-4.jpg", "images/face-3.jpg", ],
+			budget: '$2,000',
+			completion: {
+				label: 'Cancelled',
+				status: 'exception',
+				value: 100,
+			},
+		},
+	];
 export default {
   components: {
     WidgetCounter,
     CardLineChart,
-    CardBarChart
+    CardBarChart,
+    CardProjectTable
+    
   },
   data() {
     return {
       // Counter Widgets Stats
+      tableColumns,
+      tableData,
       stats,
     };
   },

@@ -15,10 +15,8 @@
 </template>
 
 <script>
-
 	// Bar chart for "Active Users" card.
 	import ChartLine from './ChartLine.vue' ;
-
 	export default ({
 		components: {
 			ChartLine,
@@ -35,7 +33,8 @@
 						borderWidth: 0,
 						pointRadius: 0,
 						borderColor: "#1890FF",
-						// borderWidth: 3,
+						// eslint-disable-next-line no-dupe-keys
+						borderWidth: 3,
 						data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
 						maxBarThickness: 6
 
@@ -46,7 +45,8 @@
 						borderWidth: 0,
 						pointRadius: 0,
 						borderColor: "#B37FEB",
-						// borderWidth: 3,
+						// eslint-disable-next-line no-dupe-keys
+						borderWidth: 3,
 						data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
 						maxBarThickness: 6
 
