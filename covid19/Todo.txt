@@ -8,3 +8,12 @@ Todo:
 - Homepage hiển thị tình hình chung trên toàn thế giới và Việt Nam
 - Tìm kiếm cho ra kết quả tình hình của 1 quốc gia
 - Tình hình chi tiết 1 quốc gia
+
+Task:
+- Thiết kế giao diện 
+- Thông tin chung của thế giới và VN, tự render khi load web
+- Bảng dữ liệu có thể cuộn
+- 
+- Phần header bảng dữ liệu fixed
+- Danh sách các quốc gia sử dụng mảng
+- Xuất pdf, word

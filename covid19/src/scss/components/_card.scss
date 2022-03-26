@@ -33,6 +33,39 @@
 .header-solid .ant-card-head {
 	border-bottom: 0;
 }
+.header-search {
+	width: 200px;
+	margin: 0 7px 0 0;
+		
+	@media( min-width: $md ){
+		margin: 0 7px;
+	}
+	svg {
+		path {
+			fill: $color-gray-7;
+		}
+	}
+	.ant-input {
+		font-weight: $fw-semibold;
+		color: $color-gray-7;
+		&:not(:first-child) {
+			padding-left: 32px;
+		}
+		&:not(:last-child) {
+			padding-right: 11px;
+		}
+	}
+	&.loading .ant-input:not(:last-child) {
+		padding-right: 30px;
+	}
+	.ant-input-suffix .ant-input-search-icon {
+		display: none;
+
+		&.anticon-loading {
+			display: block;
+		}
+	}
+}
 .ant-card-head-wrapper {
     min-height: 72px;
 }
