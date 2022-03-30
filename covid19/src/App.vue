@@ -239,166 +239,6 @@ const tableData = [
     budget: null,
     completion: null,
   },
-  {
-    key: "2",
-    company: {
-      name: "Progress Track",
-      logo: "images/logos/logo-atlassian.svg",
-    },
-    members: "$2,000",
-    budget: "$3,000",
-    completion: 10,
-  },
-  {
-    key: "3",
-    company: {
-      name: "Fix Platform Errors",
-      logo: "images/logos/logo-slack.svg",
-    },
-    members: "$2,000",
-    budget: "Not Set",
-    completion: 100
-  },
-  {
-    key: "4",
-    company: {
-      name: "Launch new Mobile App",
-      logo: "images/logos/logo-spotify.svg",
-    },
-    members: "$2,000",
-    budget: "$20,600",
-    completion: 100
-  },
-  {
-    key: "5",
-    company: {
-      name: "Add the New Landing Page",
-      logo: "images/logos/logo-jira.svg",
-    },
-    members: "$2,000",
-    budget: "$4,000",
-    completion: 80,
-  },
-  {
-    key: "6",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: "$2,000",
-    budget: "$2,000",
-    completion: 80
-  },
-  {
-    key: "7",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: "$2,000",
-    budget: "$2,000",
-    completion: 80
-  },
-  {
-    key: "8",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: "$2,000",
-    budget: "$2,000",
-    completion: 80
-  },
-  {
-    key: "9",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: "$2,000",
-    budget: "$2,000",
-    completion: 80
-  },
-  {
-    key: "9",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: "$2,000",
-    budget: "$2,000",
-    completion: 80
-  },
-  {
-    key: "9",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: "$2,000",
-    budget: "$2,000",
-    completion: 80
-  },
-  {
-    key: "9",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: "$2,000",
-    budget: "$2,000",
-    completion: 80
-  },
-  {
-    key: "9",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: "$2,000",
-    budget: "$2,000",
-    completion: 80
-  },
-  {
-    key: "9",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: "$2,000",
-    budget: "$2,000",
-    completion: 80
-  },
-  {
-    key: "10",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: "$2,000",
-    budget: "$2,000",
-    completion: 80
-  },
-  {
-    key: "9",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: "$2,000",
-    budget: "$2,000",
-    completion: 80
-  },
-  {
-    key: "9",
-    company: {
-      name: "Redesign Online Store",
-      logo: "images/logos/logo-invision.svg",
-    },
-    members: "$2,000",
-    budget: "$2,000",
-    completion: 80
-  },
 ];
 var worldOptions = {
   method: "GET",
@@ -418,15 +258,15 @@ var vietOptions = {
     "x-rapidapi-key": "da6e3f3cbdmsh556c57bfb493b75p1bdb27jsn15b95419cc8c",
   },
 };
-var countryOptions = {
-  method: "GET",
-  url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/country-report-iso-based/",
-  headers: {
-    "x-rapidapi-host":
-      "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
-    "x-rapidapi-key": "da6e3f3cbdmsh556c57bfb493b75p1bdb27jsn15b95419cc8c",
-  },
-};
+// var countryOptions = {
+//   method: "GET",
+//   url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/country-report-iso-based/",
+//   headers: {
+//     "x-rapidapi-host":
+//       "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
+//     "x-rapidapi-key": "da6e3f3cbdmsh556c57bfb493b75p1bdb27jsn15b95419cc8c",
+//   },
+// };
 var tableOptions = {
   method: "GET",
   url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/countries",
@@ -436,6 +276,16 @@ var tableOptions = {
     "x-rapidapi-key": "da6e3f3cbdmsh556c57bfb493b75p1bdb27jsn15b95419cc8c",
   },
 };
+var options = {
+  method: 'GET',
+  url: 'https://covid19-data.p.rapidapi.com/geojson-ww',
+  headers: {
+    'X-RapidAPI-Host': 'covid19-data.p.rapidapi.com',
+    'X-RapidAPI-Key': 'da6e3f3cbdmsh556c57bfb493b75p1bdb27jsn15b95419cc8c'
+  }
+};
+
+
 export default {
   components: {
     WidgetCounter,
@@ -456,12 +306,12 @@ export default {
     };
   },
   methods: {
-    async getData() {
-      (this.countryName = "Canada"), (this.threeLetterSymbol = "can");
-      countryOptions.url = `${countryOptions.url}${this.countryName}/${this.threeLetterSymbol}`;
-      console.log(countryOptions.url);
-      await axios
-        .request(countryOptions)
+    getData() {
+      // (this.countryName = "Canada"), (this.threeLetterSymbol = "can");
+      // countryOptions.url = `${countryOptions.url}${this.countryName}/${this.threeLetterSymbol}`;
+      // console.log(countryOptions.url);
+      axios
+        .request(options)
         .then(function (response) {
           console.log(response.data);
         })
@@ -469,53 +319,8 @@ export default {
           console.error(error);
         });
     },
-  },
-  // beforeCreate(){
-  //   axios
-  //       .request(tableOptions)
-  //       .then(function (response) {
-  //         console.log(response.data[0]);
-  //         // response.data.forEach(function(item, i, tableData) {
-            
-  //         //   // console.log(tableData[i + 1].key)
-  //         //   var a = i + 1;
-  //         //   tableData[a].key = String(a),
-  //         //   tableData[a] = {
-  //         //     company: {
-  //         //       name : item.Country,
-  //         //       logo : item.ThreeLetterSymbol,
-  //         //     }
-  //         //   };
-  //         //   // console.log(tableData[i + 1].company.name);
-  //         //   tableData[a].members = item.TotalCases;
-  //         //   tableData[a].budget = item.TotalDeaths;
-  //         //   tableData[a].completion = item.TotalRecovered;
-  //         //   console.log(tableData);
-  //         // });
-  //           tableData[0] = {
-  //             key : String(1),
-  //             company: {
-  //               name : "USA",
-  //               logo : "usa",
-  //             },
-  //             members : String(123456),
-  //             budget : String(1234567),
-  //             completion : 12345678,
-  //           };
-  //           // tableData[0].key = String(2),
-  //           // tableData[0].members = 123456;
-  //           // tableData[0].budget = 1234567;
-  //           // tableData[0].completion = 12345678;
-  //           console.log(tableData[0].key);
-  //           console.log(tableData);
-  //           console.log(tableData[1].key);
-  //           this.$forceUpdate();
 
-  //       })
-  //       .catch(function (error) {
-  //         console.error(error);
-  //       });
-  // },
+  },
   created() {
     axios
       .request(worldOptions)
@@ -548,43 +353,20 @@ export default {
     axios
         .request(tableOptions)
         .then(function (response) {
-          console.log(response.data[0]);
-          // response.data.forEach(function(item, i, tableData) {
-            
-          //   // console.log(tableData[i + 1].key)
-          //   var a = i + 1;
-          //   tableData[a].key = String(a),
-          //   tableData[a] = {
-          //     company: {
-          //       name : item.Country,
-          //       logo : item.ThreeLetterSymbol,
-          //     }
-          //   };
-          //   // console.log(tableData[i + 1].company.name);
-          //   tableData[a].members = item.TotalCases;
-          //   tableData[a].budget = item.TotalDeaths;
-          //   tableData[a].completion = item.TotalRecovered;
-          //   console.log(tableData);
-          // });
-            tableData[0] = {
-              key : String(1),
+          // console.log(response.data[0]);
+          response.data.forEach(function(item, i) {
+            tableData[i] = {
+              key : String(i),
               company: {
-                name : "USA",
-                logo : "usa",
+                name : item.Country,
+                logo : item.ThreeLetterSymbol,
               },
-              members : String(123456),
-              budget : String(1234567),
-              completion : 12345678,
+              members : String(item.TotalCases),
+              budget : String(item.TotalDeaths),
+              completion : item.TotalRecovered,
             };
-            // tableData[0].key = String(2),
-            // tableData[0].members = 123456;
-            // tableData[0].budget = 1234567;
-            // tableData[0].completion = 12345678;
-            console.log(tableData[0].key);
-            console.log(tableData);
-            console.log(tableData[1].key);
-            this.$forceUpdate();
-
+          });
+          // console.log(tableData);
         })
         .catch(function (error) {
           console.error(error);

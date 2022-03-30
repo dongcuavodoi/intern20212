@@ -2,18 +2,18 @@
 - Tình hình chung trên toàn thế giới và Việt Nam
 - Tìm kiếm theo tên quốc gia
 - Tình hình chi tiết 1 quốc gia (bảng dữ liệu và biểu đồ, export báo cáo ra pdf và excel)"
-
-
 Todo:
 - Homepage hiển thị tình hình chung trên toàn thế giới và Việt Nam
 - Tìm kiếm cho ra kết quả tình hình của 1 quốc gia
 - Tình hình chi tiết 1 quốc gia
 
+
 Task:
-- Thiết kế giao diện 
-- Thông tin chung của thế giới và VN, tự render khi load web
-- Bảng dữ liệu có thể cuộn
-- 
+- Thiết kế giao diện (xong)
+- Thông tin chung của thế giới và VN, tự render khi load web, dùng created() (xong)
+- Bảng dữ liệu có thể cuộn (xong)
+- Tìm kiếm quốc gia bằng filter
+- Tự render bảng dữ liệu các quốc gia
 - Phần header bảng dữ liệu fixed
-- Danh sách các quốc gia sử dụng mảng
+- Danh sách các quốc gia sử dụng mảng (xong)
 - Xuất pdf, word
