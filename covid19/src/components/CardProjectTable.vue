@@ -25,16 +25,11 @@
               justify-content: flex-end;
             "
           >
-            <!-- <a-radio-group v-model="projectHeaderBtns" size="small">
-						<a-radio-button value="all">ALL</a-radio-button>
-						<a-radio-button value="online">ONLINE</a-radio-button>
-						<a-radio-button value="stores">STORES</a-radio-button>
-					</a-radio-group> -->
             <a-input-search
               class="header-search"
               :class="searchLoading ? 'loading' : ''"
               placeholder="Type here…"
-              @keyup.enter="isSearch = !isSearch"
+              v-model="search" 
               @search="onSearch"
               :loading="searchLoading"
             >
@@ -58,61 +53,32 @@
         </a-row>
       </div>
     </template>
-    <a-table  v-if="isSearch == false" :columns="columns" :data-source="data" :pagination="false">
-      <a-space slot="members" slot-scope="members" :size="-12">
-        <template v-for="member in members">
+    <a-table  :columns="columns" :data-source="data" :pagination="false" @onChange="onChange" :scroll="{ y: 540 }">
+      <a-space slot="totalCases" slot-scope="totalCases" :size="-12">
+        <template v-for="member in totalCases">
           <a-avatar :key="member" size="small" :src="member" />
         </template>
       </a-space>
 
-      <template slot="company" slot-scope="company">
+      <template slot="country" slot-scope="country">
         <h6 class="text m-0">
-          <!-- <img :src="company.logo" width="25" class="mr-10" /> -->
-          {{ company.name }}
+          <!-- <img :src="country.logo" width="25" class="mr-10" /> -->
+          {{ country.name }}
         </h6>
         <country-flag
-          :country="company.logo"
+          :country="country.logo"
           size="normal"
           style="float: left"
         />
       </template>
 
-      <template slot="completion" slot-scope="completion">
-        <span>{{ completion.label ? completion.label : completion }}</span>
+      <template slot="totalRecovered" slot-scope="totalRecovered">
+        <span>{{ totalRecovered.label ? totalRecovered.label : totalRecovered }}</span>
         <a-progress
-          :percent="completion.value ? completion.value : completion"
+          :percent="totalRecovered.value ? totalRecovered.value : totalRecovered"
           :show-info="false"
           size="small"
-          :status="completion.status ? completion.status : 'normal'"
-        />
-      </template>
-    </a-table>
-    <a-table  v-if="isSearch == true" :columns="columns" :data-source="searchData" :pagination="false">
-      <a-space slot="members" slot-scope="members" :size="-12">
-        <template v-for="member in members">
-          <a-avatar :key="member" size="small" :src="member" />
-        </template>
-      </a-space>
-
-      <template slot="company" slot-scope="company">
-        <h6 class="text m-0">
-          <!-- <img :src="company.logo" width="25" class="mr-10" /> -->
-          {{ company.name }}
-        </h6>
-        <country-flag
-          :country="company.logo"
-          size="normal"
-          style="float: left"
-        />
-      </template>
-
-      <template slot="completion" slot-scope="completion">
-        <span>{{ completion.label ? completion.label : completion }}</span>
-        <a-progress
-          :percent="completion.value ? completion.value : completion"
-          :show-info="false"
-          size="small"
-          :status="completion.status ? completion.status : 'normal'"
+          :status="totalRecovered.status ? totalRecovered.status : 'normal'"
         />
       </template>
     </a-table>
@@ -150,16 +116,33 @@ export default {
   },
   methods:{
     onSearch(value){
-      console.log("onSearch");
-      console.log(value);
       this.data.forEach(function(item){
-        if(item.company.name.includes(value) ){
+        if(item.country.name.includes(value) ){
           searchData.push(item)
         }
       });
-      console.log(searchData);
+      if(value == ''){
+        this.searchData = [];
+      }
+      console.log(this.isSearch);
+      console.log(this.searchData);
+      console.log(value);
+      // console.log(this.search);
+    },
+    onChange(pagination, filters, sorter, extra) {
+      console.log("params", pagination, filters, sorter, extra);
+    },
+  },
+  computed:{
+    resultSearch(){
+      // console.log(this.search);
+      return this.data.filter(item => {
+        return item.country.name.toLowerCase().includes(this.search.toLowerCase())
+      })
+
     }
   }
+
 };
 </script>
 <style lang="scss">
