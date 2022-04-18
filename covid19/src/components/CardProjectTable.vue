@@ -29,8 +29,7 @@
               class="header-search"
               :class="searchLoading ? 'loading' : ''"
               placeholder="Type here…"
-              v-model="search" 
-              @search="onSearch"
+              v-model="search"
               :loading="searchLoading"
             >
               <svg
@@ -49,11 +48,19 @@
                 />
               </svg>
             </a-input-search>
+            <!-- <p>{{answer}}</p> -->
           </a-col>
         </a-row>
       </div>
     </template>
-    <a-table  :columns="columns" :data-source="data" :pagination="false" @onChange="onChange" :scroll="{ y: 540 }">
+    <a-table
+      :columns="columns"
+      :data-source="data"
+      v-if="isSearch == false"
+      :pagination="false"
+      @onChange="onChange"
+      :scroll="{ y: 280 }"
+    >
       <a-space slot="totalCases" slot-scope="totalCases" :size="-12">
         <template v-for="member in totalCases">
           <a-avatar :key="member" size="small" :src="member" />
@@ -73,9 +80,53 @@
       </template>
 
       <template slot="totalRecovered" slot-scope="totalRecovered">
-        <span>{{ totalRecovered.label ? totalRecovered.label : totalRecovered }}</span>
+        <span>{{
+          totalRecovered.label ? totalRecovered.label : totalRecovered
+        }}</span>
         <a-progress
-          :percent="totalRecovered.value ? totalRecovered.value : totalRecovered"
+          :percent="
+            totalRecovered.value ? totalRecovered.value : totalRecovered
+          "
+          :show-info="false"
+          size="small"
+          :status="totalRecovered.status ? totalRecovered.status : 'normal'"
+        />
+      </template>
+    </a-table>
+    <a-table
+      :columns="columns"
+      :data-source="resultSearch"
+      :pagination="false"
+      v-else
+      @onChange="onChange"
+      :scroll="{ y: 280 }"
+    >
+      <a-space slot="totalCases" slot-scope="totalCases" :size="-12">
+        <template v-for="member in totalCases">
+          <a-avatar :key="member" size="small" :src="member" />
+        </template>
+      </a-space>
+
+      <template slot="country" slot-scope="country">
+        <h6 class="text m-0">
+          <!-- <img :src="country.logo" width="25" class="mr-10" /> -->
+          {{ country.name }}
+        </h6>
+        <country-flag
+          :country="country.logo"
+          size="normal"
+          style="float: left"
+        />
+      </template>
+
+      <template slot="totalRecovered" slot-scope="totalRecovered">
+        <span>{{
+          totalRecovered.label ? totalRecovered.label : totalRecovered
+        }}</span>
+        <a-progress
+          :percent="
+            totalRecovered.value ? totalRecovered.value : totalRecovered
+          "
           :show-info="false"
           size="small"
           :status="totalRecovered.status ? totalRecovered.status : 'normal'"
@@ -88,12 +139,9 @@
 
 <script>
 import CountryFlag from "vue-country-flag";
-const searchData = [
-
-]
 export default {
   components: {
-    CountryFlag
+    CountryFlag,
   },
   props: {
     data: {
@@ -110,39 +158,40 @@ export default {
       // Active button for the "Projects" table's card header radio button group.
       projectHeaderBtns: "all",
       searchLoading: false,
-      isSearch : false,
-      searchData,
+      search: "",
+      isSearch: false,
     };
   },
-  methods:{
-    onSearch(value){
-      this.data.forEach(function(item){
-        if(item.country.name.includes(value) ){
-          searchData.push(item)
-        }
-      });
-      if(value == ''){
-        this.searchData = [];
+  watch: {
+    search(value) {
+
+      if (value != "") {
+        this.isSearch = true;
+      }else{
+        this.isSearch = false;
       }
-      console.log(this.isSearch);
-      console.log(this.searchData);
-      console.log(value);
-      // console.log(this.search);
+        
+    },
+  },
+  methods: {
+    getSearch() {
+      return this.data.filter((item) => {
+        return item.country.name.toLowerCase().includes(this.search.toLowerCase());
+      });
     },
     onChange(pagination, filters, sorter, extra) {
       console.log("params", pagination, filters, sorter, extra);
     },
   },
-  computed:{
-    resultSearch(){
-      // console.log(this.search);
-      return this.data.filter(item => {
-        return item.country.name.toLowerCase().includes(this.search.toLowerCase())
-      })
-
-    }
-  }
-
+  computed: {
+    resultSearch() {
+      return this.data.filter((item) => {
+        return item.country.name
+          .toLowerCase()
+          .includes(this.search.toLowerCase());
+      });
+    },
+  },
 };
 </script>
 <style lang="scss">
@@ -151,10 +200,4 @@ export default {
   display: inline-block;
   padding-left: 20px;
 }
-// .wrapper{
-//   position: relative;
-// }
-// .fixed{
-//   position: absolute;
-// }
 </style>
