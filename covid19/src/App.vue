@@ -18,6 +18,7 @@
         top: 0,
         bottom: 0,
       }"
+      class="sider"
     >
       <div class="logo" />
       <div class="text-sider">Continents</div>
@@ -350,6 +351,17 @@ export default {
   text-align: center;
 }
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
+}
+/* Track */
+.sider::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+.sider::-webkit-scrollbar-thumb {
+  background: blue;
+  border-radius: 10px;
 }
 </style>
