@@ -1,5 +1,5 @@
 <template>
-  <a-layout id="components-layout-demo-fixed">
+  <a-layout has-sider>
     <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
       <div class="logo">
         <a-icon
@@ -8,74 +8,112 @@
         />
         <span class="header">Covid 19</span>
       </div>
-      <!-- <a-col :span="12" :md="6" class="header-control">
-      </a-col> -->
     </a-layout-header>
-    <a-layout-content :style="{ padding: '0 50px', marginTop: '64px' }">
-      <a-breadcrumb :style="{ margin: '16px 0' }">
-        <a-breadcrumb-item>Home</a-breadcrumb-item>
-        <a-breadcrumb-item>App</a-breadcrumb-item>
-      </a-breadcrumb>
-      <div :style="{ padding: '24px', minHeight: '660px' }">
-        <!-- Counter Widgets -->
-        <a-row :gutter="24">
-          <a-col
-            :span="24"
-            :lg="12"
-            :xl="6"
-            class="mb-24"
-            v-for="(stat, index) in stats"
-            :key="index"
+    <a-layout-sider
+      :style="{
+        overflow: 'auto',
+        height: '100vh',
+        position: 'fixed',
+        left: 0,
+        top: 0,
+        bottom: 0,
+      }"
+    >
+      <div class="logo" />
+      <div class="text-sider">Continents</div>
+      <a-menu theme="dark" mode="inline">
+        <a-menu-item v-for="(continent, index) in continents"
+              :key="'1' +index" class="block-sider"> {{continent.title}}
+        </a-menu-item>
+      </a-menu>
+      <div class="text-sider">Countries</div>
+      <a-menu theme="dark" mode="inline">
+        <a-menu-item v-for="(country, index) in countries"
+              :key="'2' +index" class="block-sider"> {{country.name}}
+        </a-menu-item>
+      </a-menu>
+    </a-layout-sider>
+    <a-layout
+      id="components-layout-demo-fixed"
+      :style="{ marginLeft: '125px' }"
+    >
+      <a-layout-content :style="{ marginLeft: '70px',marginTop: '45px' }">
+        <div :style="{ padding: '28px', minHeight: '660px' }">
+          <!-- Counter Widgets -->
+          <a-row :gutter="24">
+            <a-col
+              :span="24"
+              :lg="12"
+              :xl="6"
+              class="mb-24"
+              v-for="(stat, index) in stats"
+              :key="index"
+            >
+              <WidgetCounter
+                :title="stat.title"
+                :value="stat.value"
+                :icon="stat.icon"
+              ></WidgetCounter>
+            </a-col>
+          </a-row>
+          <!-- / Counter Widgets -->
+          <!-- Charts -->
+          <!-- <a-row
+            :gutter="24"
+            type="flex"
+            align="stretch"
+            :style="{ padding: '24px' }"
           >
-            <WidgetCounter
-              :title="stat.title"
-              :value="stat.value"
-              :icon="stat.icon"
-            ></WidgetCounter>
-          </a-col>
-        </a-row>
-        <!-- / Counter Widgets -->
-        <!-- Charts -->
-        <!-- <a-row
-          :gutter="24"
-          type="flex"
-          align="stretch"
-          :style="{ padding: '24px' }"
-        >
-          <a-col :span="24" :lg="10" class="mb-24">
-            <CardBarChart></CardBarChart>
-          </a-col>
-          <a-col :span="24" :lg="14" class="mb-24">
-            <CardLineChart></CardLineChart>           
-          </a-col>
-        </a-row> -->
-        <a-row :gutter="24" type="flex" align="stretch">
-          <!-- Table -->
-          <a-col :span="24" :lg="24" class="mb-24">
-            <!-- Projects Table Card -->
-            <CardProjectTable
-              :data="tableData"
-              :columns="tableColumns"
-            ></CardProjectTable>
-            <!-- / Projects Table Card -->
-          </a-col>
-          <!-- / Table -->
-        </a-row>
-        <!-- / Charts -->
-      </div>
-    </a-layout-content>
-    <a-layout-footer :style="{ textAlign: 'center' }">
-      Ant Design ©2018 Created by Ant UED
-    </a-layout-footer>
+            <a-col :span="24" :lg="10" class="mb-24">
+              <CardBarChart></CardBarChart>
+            </a-col>
+            <a-col :span="24" :lg="14" class="mb-24">
+              <CardLineChart></CardLineChart>
+            </a-col>
+          </a-row> -->
+          <a-row :gutter="24" type="flex" align="stretch">
+            <!-- Table -->
+            <a-col :span="24" :lg="24" class="mb-24">
+              <!-- Projects Table Card -->
+              <CardProjectTable
+                :data="tableData"
+                :columns="tableColumns"
+              ></CardProjectTable>
+              <!-- / Projects Table Card -->
+            </a-col>
+            <!-- / Table -->
+          </a-row>
+          <!-- / Charts -->
+        </div>
+      </a-layout-content>
+      <a-layout-footer :style="{ marginTop: '5px',textAlign: 'center' }">
+        Ant Design ©2018 Created by Ant UED
+      </a-layout-footer>
+
+      <!-- <router-link to="detailcountry">Detail Country</router-link>
+      <router-view /> -->
+    </a-layout>
   </a-layout>
 </template>
 
 <script>
 import axios from "axios";
+import {countries} from 'country-list-json';
 import WidgetCounter from "../src/components/Widgets/WidgetCounter.vue";
 // import CardLineChart from "../src/components/CardLineChart.vue";
 // import CardBarChart from "../src/components/CardBarChart.vue";
 import CardProjectTable from "../src/components/CardProjectTable.vue";
+const continents = [
+  {title: 'World'},
+  {title: 'Asia'},
+  {title: 'Africa'},
+  {title: 'Australia'},
+  {title: 'Europe'},
+  {title: 'North America'},
+  {title: 'South America'},
+  {title: 'Ocenia'},
+];
+// const countries = [];
 const stats = [
   {
     title: "World's Total Cases",
@@ -87,7 +125,7 @@ const stats = [
 </svg>`,
   },
   {
-    title: "World's Total Deaths",
+    title: "World's Deaths",
     value: null,
     icon: `
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
@@ -95,7 +133,7 @@ const stats = [
 </svg>`,
   },
   {
-    title: "World's Total Recovered",
+    title: "World's Recovered",
     value: null,
     icon: `
 						<svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,7 +141,7 @@ const stats = [
 						</svg>`,
   },
   {
-    title: "World's Active Cases",
+    title: "World's Activated",
     value: null,
     icon: `
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-backspace-reverse-fill" viewBox="0 0 16 16">
@@ -120,7 +158,7 @@ const stats = [
 </svg>`,
   },
   {
-    title: "Vietnam's Total Deaths",
+    title: "Vietnam's Deaths",
     value: null,
     icon: `
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heartbreak-fill" viewBox="0 0 16 16">
@@ -128,7 +166,7 @@ const stats = [
 </svg>`,
   },
   {
-    title: "Vietnam's Total Recovered",
+    title: "Vietnam's Recovered",
     value: null,
     icon: `
 						<svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -136,7 +174,7 @@ const stats = [
 						</svg>`,
   },
   {
-    title: "Vietnam's Active Cases",
+    title: "Vietnam's Activated",
     value: null,
     icon: `
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-backspace-reverse-fill" viewBox="0 0 16 16">
@@ -144,7 +182,6 @@ const stats = [
 </svg>`,
   },
 ];
-// "Projects" table list of columns and their properties.
 const tableColumns = [
   {
     title: "COUNTRIES",
@@ -157,14 +194,13 @@ const tableColumns = [
     title: "TOTAL CASES",
     dataIndex: "totalCases",
     class: "font-bold text-muted text-sm",
-    sorter:  (a, b) => a.totalCases - b.totalCases,
+    sorter: (a, b) => a.totalCases - b.totalCases,
   },
   {
     title: "TOTAL DEATHS",
     dataIndex: "totalDeaths",
     class: "font-bold text-muted text-sm",
     sorter: (a, b) => a.totalDeaths - b.totalDeaths,
-
   },
   {
     title: "TOTAL RECOVERED",
@@ -173,19 +209,6 @@ const tableColumns = [
     sorter: (a, b) => a.totalRecovered - b.totalRecovered,
   },
 ];
-// "Projects" table list of rows and their properties.
-// var tableData = [
-//   {
-//     key: "",
-//     country: {
-//       name: "",
-//       logo: "",
-//     },
-//     totalCases: null,
-//     totalDeaths: null,
-//     totalRecovered: null,
-//   },
-// ];
 var worldOptions = {
   method: "GET",
   url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/world",
@@ -204,15 +227,6 @@ var vietOptions = {
     "x-rapidapi-key": "da6e3f3cbdmsh556c57bfb493b75p1bdb27jsn15b95419cc8c",
   },
 };
-// var countryOptions = {
-//   method: "GET",
-//   url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/country-report-iso-based/",
-//   headers: {
-//     "x-rapidapi-host":
-//       "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com",
-//     "x-rapidapi-key": "da6e3f3cbdmsh556c57bfb493b75p1bdb27jsn15b95419cc8c",
-//   },
-// };
 var tableOptions = {
   method: "GET",
   url: "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/countries",
@@ -240,12 +254,13 @@ export default {
   },
   data() {
     return {
-      // Counter Widgets Stats
       countryName: "",
       threeLetterSymbol: "",
       tableColumns,
       tableData: [],
       stats,
+      continents,
+      countries,
     };
   },
   methods: {
@@ -267,9 +282,6 @@ export default {
     axios
       .request(worldOptions)
       .then(function (response) {
-        // console.log(response.data);
-        // console.log(response.data[0].TotalCases);
-        // console.log(worldStats[0].value);
         stats[0].value = response.data[0].TotalCases;
         stats[1].value = response.data[0].TotalDeaths;
         stats[2].value = response.data[0].TotalRecovered;
@@ -281,9 +293,6 @@ export default {
     axios
       .request(vietOptions)
       .then(function (response) {
-        // console.log(response.data);
-        // console.log(response.data[0].TotalCases);
-        // console.log(worldStats[0].value);
         stats[4].value = response.data[0].TotalCases;
         stats[5].value = response.data[0].TotalDeaths;
         stats[6].value = response.data[0].TotalRecovered;
@@ -294,7 +303,6 @@ export default {
       });
 
     const response = await axios.request(tableOptions);
-    // console.log(response.data[0]);
     this.tableData = response.data.map((item, index) => {
       return {
         key: index,
@@ -312,7 +320,7 @@ export default {
 </script>
 
 <style lang="scss">
-#components-layout-demo-fixed .logo {
+.logo {
   color: white;
   width: 120px;
   height: 31px;
@@ -321,12 +329,27 @@ export default {
   margin: 16px 24px 16px 0;
   float: left;
 }
-#components-layout-demo-fixed .header {
+.header {
   font-size: 18px;
 }
-// .scrollable-container {
-//   height: 400px;
-//   overflow-y: scroll;
-//   background: #fff;
-// }
+.block-sider{
+  width: 100px;
+  padding: 15px;
+  background-color: #113b5c;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0;
+  color: #fff;
+}
+.block-sider:hover{
+  background-color: #0D65A3;
+}
+.text-sider{
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
 </style>

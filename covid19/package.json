@@ -13,6 +13,7 @@
     "canvas": "^2.9.0",
     "chart.js": "^3.7.1",
     "core-js": "^3.8.3",
+    "country-list-json": "^1.0.7",
     "vue": "^2.6.14",
     "vue-country-flag": "^2.3.2",
     "vuex": "^3.4.0"
@@ -27,6 +28,7 @@
     "eslint-plugin-vue": "^8.0.3",
     "node-sass": "^7.0.1",
     "sass-loader": "^12.6.0",
+    "vue-router": "^3.5.3",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
