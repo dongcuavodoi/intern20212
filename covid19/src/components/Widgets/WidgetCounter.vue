@@ -30,3 +30,8 @@
 		},
 	})
 </script>
+}<style lang="scss">
+.invisible {
+  display: none;
+}
+</style>

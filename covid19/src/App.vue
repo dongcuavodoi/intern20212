@@ -23,14 +23,17 @@
       <div class="logo" />
       <div class="text-sider">Continents</div>
       <a-menu theme="dark" mode="inline">
-        <a-menu-item v-for="(continent, index) in continents"
+        <a-menu-item  v-for="(continent, index) in continents"
               :key="'1' +index" class="block-sider"> {{continent.title}}
+              <router-link :to="'/' + continent.title"></router-link>
+              <router-view/> 
         </a-menu-item>
       </a-menu>
       <div class="text-sider">Countries</div>
       <a-menu theme="dark" mode="inline">
-        <a-menu-item v-for="(country, index) in countries"
+        <a-menu-item  v-for="(country, index) in countries"
               :key="'2' +index" class="block-sider"> {{country.name}}
+              <router-link :to="'/' + country.name + '/' + country.code"></router-link>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
@@ -43,6 +46,7 @@
           <!-- Counter Widgets -->
           <a-row :gutter="24">
             <a-col
+              
               :span="24"
               :lg="12"
               :xl="6"
@@ -51,6 +55,7 @@
               :key="index"
             >
               <WidgetCounter
+                
                 :title="stat.title"
                 :value="stat.value"
                 :icon="stat.icon"
@@ -77,6 +82,7 @@
             <a-col :span="24" :lg="24" class="mb-24">
               <!-- Projects Table Card -->
               <CardProjectTable
+                v-on:handleDetail="handleDetail"
                 :data="tableData"
                 :columns="tableColumns"
               ></CardProjectTable>
@@ -90,16 +96,15 @@
       <a-layout-footer :style="{ marginTop: '5px',textAlign: 'center' }">
         Ant Design ©2018 Created by Ant UED
       </a-layout-footer>
-
-      <!-- <router-link to="detailcountry">Detail Country</router-link>
-      <router-view /> -->
     </a-layout>
+    <!-- <router-link to:="detailcountry">Detail Country</router-link>
+    <router-view/>  -->
   </a-layout>
 </template>
 
 <script>
 import axios from "axios";
-import {countries} from 'country-list-json';
+import {countries} from '../node_modules/countries.json/config';
 import WidgetCounter from "../src/components/Widgets/WidgetCounter.vue";
 // import CardLineChart from "../src/components/CardLineChart.vue";
 // import CardBarChart from "../src/components/CardBarChart.vue";
@@ -114,7 +119,6 @@ const continents = [
   {title: 'South America'},
   {title: 'Ocenia'},
 ];
-// const countries = [];
 const stats = [
   {
     title: "World's Total Cases",
@@ -237,14 +241,6 @@ var tableOptions = {
     "x-rapidapi-key": "da6e3f3cbdmsh556c57bfb493b75p1bdb27jsn15b95419cc8c",
   },
 };
-var options = {
-  method: "GET",
-  url: "https://covid19-data.p.rapidapi.com/geojson-ww",
-  headers: {
-    "X-RapidAPI-Host": "covid19-data.p.rapidapi.com",
-    "X-RapidAPI-Key": "da6e3f3cbdmsh556c57bfb493b75p1bdb27jsn15b95419cc8c",
-  },
-};
 
 export default {
   components: {
@@ -262,15 +258,20 @@ export default {
       stats,
       continents,
       countries,
+      buffer:'',
     };
   },
   methods: {
+    handleDetail(name,logo){
+      var url = '/' + name + '/' + logo.toUpperCase()
+      this.$router.push(url);
+    },
     getData() {
       // (this.countryName = "Canada"), (this.threeLetterSymbol = "can");
       // countryOptions.url = `${countryOptions.url}${this.countryName}/${this.threeLetterSymbol}`;
       // console.log(countryOptions.url);
       axios
-        .request(options)
+        .request(tableOptions)
         .then(function (response) {
           console.log(response.data);
         })
@@ -334,8 +335,6 @@ export default {
   font-size: 18px;
 }
 .block-sider{
-  width: 100px;
-  padding: 15px;
   background-color: #113b5c;
   border-radius: 8px;
   text-align: center;

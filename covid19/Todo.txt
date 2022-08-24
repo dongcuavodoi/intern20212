@@ -12,8 +12,12 @@ Task:
 - Thiết kế giao diện (xong)
 - Thông tin chung của thế giới và VN, tự render khi load web, dùng created() (xong)
 - Bảng dữ liệu có thể cuộn (xong)
-- Tìm kiếm quốc gia bằng filter
-- Tự render bảng dữ liệu các quốc gia
-- Phần header bảng dữ liệu fixed
+- Tìm kiếm quốc gia bằng filter(xong)
+- Tự render bảng dữ liệu các quốc gia(xong)
+- Phần header bảng dữ liệu fixed(xong)
 - Danh sách các quốc gia sử dụng mảng (xong)
 - Xuất pdf, word
+
+Bonus: 
+- Routes link, view
+- gọi API theo bufer

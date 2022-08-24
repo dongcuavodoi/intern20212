@@ -5,7 +5,7 @@ import DetailCountry from '../components/DetailCountry.vue'
 Vue.use(VueRouter)
 const routes = [
     {
-      path: '/detailcountry/:name/:symbol',
+      path: '/',
       name: 'DetailCountry',
       props: true,
       component: DetailCountry,

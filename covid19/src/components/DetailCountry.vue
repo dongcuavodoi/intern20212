@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-    <p>{{name}}</p>
-    <p>{{symbol}}</p>
+    <!-- <h1>Hello, world!</h1> -->
   </div>
 </template>
 
@@ -15,6 +14,5 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
 </style>

@@ -61,35 +61,18 @@
       @onChange="onChange"
       :scroll="{ y: 280 }"
     >
-      <a-space slot="totalCases" slot-scope="totalCases" :size="-12">
-        <template v-for="member in totalCases">
-          <a-avatar :key="member" size="small" :src="member" />
-        </template>
-      </a-space>
-
       <template slot="country" slot-scope="country">
-        <h6 class="text m-0">
-          <!-- <img :src="country.logo" width="25" class="mr-10" /> -->
+        <h6 class="text m-0" v-on:click="$emit('handleDetail',country.name,country.logo)">
           {{ country.name }}
+          <router-link :to="'/' + country.name + '/' + country.logo.toUpperCase()"></router-link>
         </h6>
+        <!-- <a :href="'/' + country.name + '/' + country.logo.toUpperCase()" class="text m-0">
+          {{ country.name }} v-on:click="$emit('handleDetail',country.name,country.logo)"
+        </a> -->
         <country-flag
           :country="country.logo"
           size="normal"
           style="float: left"
-        />
-      </template>
-
-      <template slot="totalRecovered" slot-scope="totalRecovered">
-        <span>{{
-          totalRecovered.label ? totalRecovered.label : totalRecovered
-        }}</span>
-        <a-progress
-          :percent="
-            totalRecovered.value ? totalRecovered.value : totalRecovered
-          "
-          :show-info="false"
-          size="small"
-          :status="totalRecovered.status ? totalRecovered.status : 'normal'"
         />
       </template>
     </a-table>
@@ -101,35 +84,15 @@
       @onChange="onChange"
       :scroll="{ y: 280 }"
     >
-      <a-space slot="totalCases" slot-scope="totalCases" :size="-12">
-        <template v-for="member in totalCases">
-          <a-avatar :key="member" size="small" :src="member" />
-        </template>
-      </a-space>
-
       <template slot="country" slot-scope="country">
-        <h6 class="text m-0">
-          <!-- <img :src="country.logo" width="25" class="mr-10" /> -->
+        <h6 class="text m-0" v-on:click="$emit('handleDetail',country.name,country.logo)">
           {{ country.name }}
+          <router-link :to="'/' + country.name + '/' + country.logo.toUpperCase()"></router-link>
         </h6>
         <country-flag
           :country="country.logo"
           size="normal"
           style="float: left"
-        />
-      </template>
-
-      <template slot="totalRecovered" slot-scope="totalRecovered">
-        <span>{{
-          totalRecovered.label ? totalRecovered.label : totalRecovered
-        }}</span>
-        <a-progress
-          :percent="
-            totalRecovered.value ? totalRecovered.value : totalRecovered
-          "
-          :show-info="false"
-          size="small"
-          :status="totalRecovered.status ? totalRecovered.status : 'normal'"
         />
       </template>
     </a-table>
